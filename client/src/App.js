@@ -11,8 +11,9 @@ import {
 
 import PostsList from "./components/PostsList";
 import PostDetails from "./components/PostDetails";
+import {useState} from "react";
 
-
+import AddFormPost from './components'
 const useStyles = makeStyles((theme) => ({
    root: {
       flexGrow: 1,
@@ -28,8 +29,15 @@ const useStyles = makeStyles((theme) => ({
    },
 }));
 
+
 const App=()=>{
    const classes=useStyles();
+   const [open,SetOpen]=useState(false);
+
+   const handleChange=()=>{
+      SetOpen(!open)
+   }
+
   return (
       <>
       <CssBaseline/>
@@ -75,6 +83,7 @@ const App=()=>{
             </Grid>
          </Grid>
       </Container>
+         <AddFormPost open={open} handleChange={handleChange}/>
       </>
   );
 }
