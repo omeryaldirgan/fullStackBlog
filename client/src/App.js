@@ -1,7 +1,12 @@
+import {useState,useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {CssBaseline,Container,Grid,AppBar,Toolbar,Typography,Button,IconButton} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/MenuBook";
 import PenIcon from "@material-ui/icons/Create";
+import PostsList from "./components/PostsList";
+import PostDetails from "./components/PostDetails";
+
+import AddFormPost from './components/AddFormPost'
 
 import {
    BrowserRouter as Router,
@@ -9,12 +14,10 @@ import {
    Route,
    Redirect,
 } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {fetchPosts} from "./redux/actions/posts";
 
-import PostsList from "./components/PostsList";
-import PostDetails from "./components/PostDetails";
-import {useState} from "react";
 
-import AddFormPost from './components/AddFormPost'
 const useStyles = makeStyles((theme) => ({
    root: {
       flexGrow: 1,
@@ -34,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
 const App=()=>{
    const classes=useStyles();
    const [open,SetOpen]=useState(false);
+   const dispatch=useDispatch();
+
+   useEffect(()=>{
+      dispatch(fetchPosts())
+   },[dispatch])
 
    const handleClose=()=>{
       SetOpen(!open)

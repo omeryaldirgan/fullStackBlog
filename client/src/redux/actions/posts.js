@@ -2,7 +2,7 @@ import * as api from '../../api/index'
 import * as types from './types'
 //Action: Bir javascript objesidir. Store’da hangi state’in değişeceği bilgisini(type) ve state verisini taşır(payload)
 
-export const fetchPosts=async (dispatch)=>{
+export const fetchPosts=()=>async (dispatch)=>{
    try
    {
       const {data}=await api.fetchPosts();
