@@ -31,3 +31,17 @@ export const fetchPosts=()=>async (dispatch)=>{
        console.log(e)
     }
  }
+
+export const fetchSinglePost=(id)=>async(dispatch)=>{
+   try
+   {
+      const {data}=await api.fetchSinglePost(id);
+      dispatch({
+         type:types.FETCH_SINGLE_POST ,
+         payload: data
+      })
+   }catch (e)
+   {
+      console.log(e)
+   }
+}

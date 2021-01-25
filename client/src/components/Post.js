@@ -29,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Post = ({ _id, title, subtitle, content, tag, image, createdAt }) => {
+const Post = ({ _id, title, subtitle, content, tag, image, createAt }) => {
    const classes = useStyles();
-
+   console.log(createAt);
    const convertRelativeTime = (date) => {
       return moment(date).fromNow();
    };
@@ -46,7 +46,7 @@ const Post = ({ _id, title, subtitle, content, tag, image, createdAt }) => {
          <div className={classes.overlay}>
             <Typography variant="h6">Ömer</Typography>
             <Typography variant="body2">
-               {convertRelativeTime(createdAt)}
+               {convertRelativeTime(createAt)}
             </Typography>
          </div>
          <CardContent>
