@@ -38,13 +38,39 @@ const PostDetails=({history,match,location })=>{
    useEffect(()=>{
     dispatch(fetchSinglePost(id))
    },[dispatch]);
-
-   const post=useSelector(state=>state.posts.currentPost);
-   console.log(post);
+   const convertRelativeTime = (date) => {
+      return moment(date).fromNow();
+   };
+   const currentPost=useSelector(state=>state.posts.currentPost);
    return(
-      <div>
-         <h1>Hello</h1>
-      </div>
+      <Paper className={classes.paper} elevation={0}>
+
+            <div>
+               <Divider />
+               <Typography variant="overline" gutterBottom>
+                  {currentPost?.subtitle}
+               </Typography>
+               <Typography variant="caption" component="p" gutterBottom>
+                  {convertRelativeTime(currentPost?.createAt)} by Ömer
+               </Typography>
+               <Chip
+                  label={`# ${currentPost?.tag}`}
+                  variant="outlined"
+                  className={classes.chip}
+               />
+
+               <div className={classes.content}>
+                  <img
+                     src={currentPost?.image || noImage}
+                     alt="Post"
+                     className={classes.image}
+                  />
+                  <Typography variant="body1" gutterBottom>
+                     {currentPost?.content}
+                  </Typography>
+               </div>
+            </div>
+      </Paper>
    )
 }
 export default  PostDetails;
