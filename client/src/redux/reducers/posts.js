@@ -19,7 +19,13 @@ const postReducer = (state = initialState, action) => {
       case types.FETCH_SINGLE_POST:
          return {
             ...state,
-            currentPost:action.payload ,
+            currentPost:action.payload,
+         };
+      case types.DELETE_POST :
+         return {
+            ...state,
+            posts:state.posts.filter(post=>post._id !==action.payload) ,//payload: data._id actionsdan geliyor
+            currentPost: null
          };
       case types.CREATE_POST:
          return {

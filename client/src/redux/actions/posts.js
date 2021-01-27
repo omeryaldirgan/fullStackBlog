@@ -45,3 +45,18 @@ export const fetchSinglePost=(id)=>async(dispatch)=>{
       console.log(e)
    }
 }
+
+
+export const deletePost=(id)=>async(dispatch)=>{
+   try
+   {
+      const {data}=await api.deletePost(id);
+      dispatch({
+         type:types.DELETE_POST ,
+         payload: data._id
+      })
+   }catch (e)
+   {
+      console.log(e)
+   }
+}
