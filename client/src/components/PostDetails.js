@@ -7,6 +7,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import noImage from "../images/noimage.svg";
 import {fetchSinglePost,deletePost} from "../redux/actions/posts"; //1
+import EditPostForm from '../components/EditPostForm'
 const useStyles = makeStyles((theme) => ({
    paper: {
       padding: theme.spacing(3),
@@ -64,7 +65,7 @@ const PostDetails=({history,match,location })=>{
    return(
       <Paper className={classes.paper} elevation={0}>
          {editMode ? (
-            <div>a</div>
+            <EditPostForm post={currentPost} closeEditMode={closeEditMode} />
          ) : (
             <div>
                <div className={classes.header}>
