@@ -38,11 +38,24 @@ export const getSinglePost=async (req,res)=>{
 }
 
 export const deletePost=async (req,res)=>{
+   const {id:_id}=await req.params //routes da tanımlanan id
    try{
-      const {id:_id}=await req.params //routes da tanımlanan id
-
       const deletePost=await Post.findByIdAndRemove(_id);
       res.json(deletePost);
+   }catch (error ){
+      res.status(404).json({
+         message:error.message
+      })
+   }
+}
+
+
+export const updatePost=async (req,res)=>{
+   const {id:_id}=await req.params //routes da tanımlanan id
+   const post=req.body;
+   try{
+      const updatedPost=await Post.findByIdAndUpdate(_id,post,{new:true});//{new:true} update edilen postu bana dönder
+      res.json(updatedPost);
    }catch (error ){
       res.status(404).json({
          message:error.message

@@ -60,3 +60,17 @@ export const deletePost=(id)=>async(dispatch)=>{
       console.log(e)
    }
 }
+
+export const updatePost=(id,post)=>async(dispatch)=>{
+   try
+   {
+      const {data}=await api.updatePost(id,post);
+      dispatch({
+         type:types.UPDATE_POST ,
+         payload: data//update edilmiş yeni datayı payloada gönderdik
+      })
+   }catch (e)
+   {
+      console.log(e)
+   }
+}

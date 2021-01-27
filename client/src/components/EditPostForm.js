@@ -6,7 +6,7 @@ import { TextField, Select, Input, MenuItem, Button } from "@material-ui/core";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { updatePost } from "../actions/post";
+import { updatePost } from "../redux/actions/posts";
 
 const useStyles = makeStyles((theme) => ({
    textField: {
@@ -21,25 +21,26 @@ const tags = ["fun", "programming", "health", "science"];
 
 const postSchema = yup.object().shape({
    title: yup.string().required(),
-   subtitle: yup.string().required(),
+   subTitle: yup.string().required(),
    content: yup.string().min(20).required(),
    tag: yup.mixed().oneOf(tags),
 });
 
 const EditPostForm = ({ history, post, closeEditMode }) => {
    const dispatch = useDispatch();
-
    const [file, setFile] = useState(post?.image);
    const { register, handleSubmit, control, errors, reset } = useForm({
       resolver: yupResolver(postSchema),
    });
 
    const onSubmit = (data) => {
+      console.log(data);
       const updatedPost = {
          _id: post._id,
          ...data,
          image: file,
       };
+
       dispatch(updatePost(post._id, updatedPost));
 
       reset();
@@ -64,16 +65,16 @@ const EditPostForm = ({ history, post, closeEditMode }) => {
                defaultValue={post?.title}
             />
             <TextField
-               id="subtitle"
+               id="subTitle"
                label="Alt Başlık"
-               name="subtitle"
+               name="subTitle"
                variant="outlined"
                className={classes.textField}
                size="small"
                inputRef={register}
-               error={errors.subtitle ? true : false}
+               error={errors.subTitle ? true : false}
                fullWidth
-               defaultValue={post?.subtitle}
+               defaultValue={post?.subTitle}
             />
             <Controller
                as={

@@ -94,10 +94,10 @@ const PostDetails=({history,match,location })=>{
 
                <Divider />
                <Typography variant="overline" gutterBottom>
-                  {currentPost?.subtitle}
+                  {currentPost?.subTitle}
                </Typography>
                <Typography variant="caption" component="p" gutterBottom>
-                  {convertRelativeTime(currentPost?.createdAt)} by Didem
+                  {convertRelativeTime(currentPost?.createAt)} by Ömer
                </Typography>
                <Chip
                   label={`# ${currentPost?.tag}`}
